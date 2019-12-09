@@ -40,6 +40,7 @@ namespace PointsOfInterest.Services
             {
                 try
                 {
+                    int exceptionCount = 0;
                     command.Connection = _mySqlConnectionProvider.GetConnection();
                     command.CommandText = storedProcedure;
                     command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -53,6 +54,7 @@ namespace PointsOfInterest.Services
                         }
                         catch (MySqlException e)
                         {
+                            exceptionCount++;
                             Console.WriteLine("MySqlException Occurred!");
                             Console.WriteLine($"Number: {e.Number} \n Message: {e.Message}");
                             Console.WriteLine($"For point {_interestPoints[i].RegionID}");
@@ -60,6 +62,7 @@ namespace PointsOfInterest.Services
                         }
                         catch (Exception e)
                         {
+                            exceptionCount++;
                             Console.WriteLine("Exception Occurred!");
                             Console.WriteLine($"{e.Message} \n {e.StackTrace}");
                             Console.WriteLine(Environment.NewLine);
@@ -69,7 +72,9 @@ namespace PointsOfInterest.Services
                             Console.WriteLine($"*********** Finished {i} points *********** ");
                         }
                     }
-                    Console.WriteLine($"Added {_interestPoints.Count} points to database");
+                    Console.WriteLine($"Successfully added {_interestPoints.Count - exceptionCount} points to database.");
+                    Console.WriteLine($"Failed to add {exceptionCount} points to database.");
+                    Console.WriteLine($"From a total of {_interestPoints.Count} points.");
 
                 }
                 catch (MySqlException e)
