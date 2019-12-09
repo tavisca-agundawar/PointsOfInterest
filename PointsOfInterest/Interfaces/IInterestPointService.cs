@@ -8,9 +8,8 @@ namespace PointsOfInterest.Interfaces
 {
     public interface IInterestPointService
     {
-        Task<List<InterestPoint>> ParseFile(string filePath);
-        Task AddPointsToDatabase(List<InterestPoint> interestPoints);
-
+        Task ParseFile();
+        Task AddPointsToDatabase();
         Task<List<InterestPoint>> GetAllPoints();
     }
 }

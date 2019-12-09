@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PointsOfInterest.Interfaces;
+using PointsOfInterest.Services;
+using System;
 
 namespace PointsOfInterest
 {
@@ -6,7 +8,11 @@ namespace PointsOfInterest
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Please enter file path: ");
+            string path = Console.ReadLine();
+            IInterestPointService service = new InterestPointService(path);
+            service.ParseFile().ConfigureAwait(true).GetAwaiter().GetResult();
+            service.AddPointsToDatabase().ConfigureAwait(true).GetAwaiter().GetResult();
         }
     }
 }
