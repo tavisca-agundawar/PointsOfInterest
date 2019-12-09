@@ -29,6 +29,7 @@ namespace PointsOfInterest.Services
 
         public async Task AddPointsToDatabase()
         {
+            Console.WriteLine("Adding points to database...");
             if (_interestPoints?.Count == 0 || _interestPoints is null)
             {
                 Console.WriteLine(ErrorMessages.NoInterestPointsFound);
@@ -45,17 +46,47 @@ namespace PointsOfInterest.Services
                     command.Connection?.Open();
                     for (int i = 0; i < _interestPoints.Count; i++)
                     {
-                        AddParameters(command, _interestPoints[i]);
-                        await command.ExecuteNonQueryAsync();
+                        try
+                        {
+                            AddParameters(command, _interestPoints[i]);
+                            await command.ExecuteNonQueryAsync();
+                        }
+                        catch (MySqlException e)
+                        {
+                            Console.WriteLine("MySqlException Occurred!");
+                            Console.WriteLine($"Number: {e.Number} \n Message: {e.Message}");
+                            Console.WriteLine($"For point {_interestPoints[i].RegionID}");
+                            Console.WriteLine(Environment.NewLine);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Exception Occurred!");
+                            Console.WriteLine($"{e.Message} \n {e.StackTrace}");
+                            Console.WriteLine(Environment.NewLine);
+                        }
+                        if (i % 100 == 0)
+                        {
+                            Console.WriteLine($"*********** Finished {i} points *********** ");
+                        }
                     }
                     Console.WriteLine($"Added {_interestPoints.Count} points to database");
 
+                }
+                catch (MySqlException e)
+                {
+                    Console.WriteLine("MySqlException Occurred!");
+                    Console.WriteLine($"Number: {e.Number} \n Message: {e.Message}");
+                    Console.WriteLine(Environment.NewLine);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("Exception Occurred!");
                     Console.WriteLine($"{e.Message} \n {e.StackTrace}");
                     Console.WriteLine(Environment.NewLine);
+                }
+                finally
+                {
+                    command?.Connection?.Close();
                 }
             }
         }
@@ -80,8 +111,10 @@ namespace PointsOfInterest.Services
         {
             try
             {
+                Console.WriteLine("Parsing File");
                 using (StreamReader reader = new StreamReader(_filePath))
                 {
+                    Console.WriteLine("File Opened");
                     //Discard the first line (Column headers)
                     string line = await reader.ReadLineAsync();
                     int counter = 0;
@@ -98,6 +131,10 @@ namespace PointsOfInterest.Services
                         counter++;
                         successCounter++;
                         _interestPoints.Add(interestPoint);
+                        if (successCounter % 100 == 0)
+                        {
+                            Console.WriteLine($"{successCounter} lines parsed successfuly...");
+                        }
                     }
                     Console.WriteLine($"Total lines parsed: {counter} \nLines parsed successfully: {successCounter}");
                 }
