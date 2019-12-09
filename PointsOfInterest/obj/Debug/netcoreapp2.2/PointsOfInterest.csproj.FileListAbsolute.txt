@@ -1,0 +1,11 @@
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\bin\Debug\netcoreapp2.2\PointsOfInterest.deps.json
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\bin\Debug\netcoreapp2.2\PointsOfInterest.runtimeconfig.json
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\bin\Debug\netcoreapp2.2\PointsOfInterest.runtimeconfig.dev.json
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\bin\Debug\netcoreapp2.2\PointsOfInterest.dll
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\obj\Debug\netcoreapp2.2\PointsOfInterest.csprojAssemblyReference.cache
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\obj\Debug\netcoreapp2.2\PointsOfInterest.AssemblyInfoInputs.cache
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\obj\Debug\netcoreapp2.2\PointsOfInterest.AssemblyInfo.cs
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\bin\Debug\netcoreapp2.2\PointsOfInterest.dll.config
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\bin\Debug\netcoreapp2.2\PointsOfInterest.pdb
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\obj\Debug\netcoreapp2.2\PointsOfInterest.dll
+C:\Users\agundawar\source\repos\PointsOfInterest\PointsOfInterest\obj\Debug\netcoreapp2.2\PointsOfInterest.pdb
